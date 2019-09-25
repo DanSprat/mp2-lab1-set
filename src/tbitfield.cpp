@@ -37,6 +37,7 @@ TBitField::TBitField(const TBitField &bf) // конструктор копиро
 
 TBitField::~TBitField()
 {
+	delete[] pMem;
 }
 
 int TBitField::GetMemIndex(const int n) const // индекс Мем для бита n 
@@ -115,6 +116,8 @@ int TBitField::GetBit(const int n) const // получить значение б
 
 TBitField& TBitField::operator=(const TBitField &bf) // присваивание
 {
+	if (bf == *this)
+		return *this;
 	delete[] pMem;
 	BitLen = bf.BitLen;
 	MemLen = bf.MemLen;
